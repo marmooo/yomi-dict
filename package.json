@@ -1,0 +1,23 @@
+{
+  "name": "yomi-dict",
+  "version": "0.0.1",
+  "description": "Kanji reading dictionary.",
+  "main": "main.js",
+  "dependencies": {
+    "read-each-line-sync": "^1.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marmooo/yomi-dict.git"
+  },
+  "author": "marmooo",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/marmooo/yomi-dict/issues"
+  },
+  "homepage": "https://github.com/marmooo/yomi-dict"
+}
