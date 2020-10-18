@@ -14,7 +14,8 @@ npm install yomi-dict
 5. ```node build.js```
 
 ## Usage
-```const fs = require('yomi-dict');
+```
+const fs = require('yomi-dict');
 
 const dict = new YomiDict();
 dict.get('学校');  // --> [がっこう]
