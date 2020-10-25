@@ -15,7 +15,7 @@ const dicts = {
   NaistJdic: [  // require iconv
     'mecab-naist-jdic-0.6.3b-20111013/naist-jdic.utf8.csv'
   ],
-  UniDic: ['unidic-csj-3.0.1.1/lex.csv'],
+  // UniDic: ['unidic-csj-3.0.1.1/lex.csv'],
   SudachiDict: [
     'SudachiDict/src/main/text/small_lex.csv',
     'SudachiDict/src/main/text/core_lex.csv',
