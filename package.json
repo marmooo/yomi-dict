@@ -1,6 +1,6 @@
 {
   "name": "yomi-dict",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Kanji reading dictionary.",
   "main": "main.js",
   "dependencies": {
