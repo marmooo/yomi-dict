@@ -7,8 +7,8 @@ npm install yomi-dict
 ```
 
 ## Build
-1. install [NAIST-jdic](https://ja.osdn.net/projects/naist-jdic/downloads/53500/mecab-naist-jdic-0.6.3b-20111013.tar.gz/)
-2. install [SudachiDict](https://github.com/WorksApplications/SudachiDict)
+1. install [SudachiDict](https://github.com/WorksApplications/SudachiDict)
+2. install [NAIST-jdic](https://ja.osdn.net/projects/naist-jdic/downloads/53500/mecab-naist-jdic-0.6.3b-20111013.tar.gz/)
 3. ```npm install```
 4. ```node build.js```
 
