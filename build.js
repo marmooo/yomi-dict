@@ -62,12 +62,18 @@ function getWordFromUniDic(line) {
   if (pos2 == '固有名詞') {
     return false;
   }
-  word = arr[0];
+  var surface = arr[0];
+  var lemma = arr[11];
+  if (surface != lemma) {
+    // yomi は語彙素基準
+    // 動詞や形容詞の活用形の扱いが難しい
+    return false;
+  }
   yomi = arr[24];
   if (yomi == '*') {
     yomi = arr[10];
   }
-  return [word, yomi];
+  return [surface, yomi];
 }
 
 function getWordFromSudachiDict(line) {
