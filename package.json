@@ -3,12 +3,9 @@
   "version": "0.0.7",
   "description": "Kanji reading dictionary.",
   "main": "main.js",
-  "dependencies": {
-    "read-each-line-sync": "^1.0.5"
-  },
   "devDependencies": {},
   "scripts": {
-    "test": "node test.js"
+    "test": "node test-node.js"
   },
   "repository": {
     "type": "git",

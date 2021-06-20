@@ -1,6 +1,5 @@
-const YomiDict = require('.');
+import { YomiDict } from "./mod.js";
 
-var dict = new YomiDict();
-console.log('学 --> ' + dict.get('学'));
-console.log('学校 --> ' + dict.get('学校'));
-
+const dict = await YomiDict.load();
+console.log("学 --> " + dict.get("学"));
+console.log("学校 --> " + dict.get("学校"));

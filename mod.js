@@ -1,12 +1,12 @@
-const fs = require("fs");
-const readline = require("readline");
+import * as path from "https://deno.land/std/path/mod.ts";
+import { readLines } from "https://deno.land/std/io/mod.ts";
 
 class YomiDict {
   static async load() {
     const dict = {};
-    const fileReader = fs.createReadStream(__dirname + "/yomi.csv");
-    const rl = readline.createInterface({ input: fileReader });
-    for await (const line of rl) {
+    const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+    const fileReader = await Deno.open(__dirname + "/yomi.csv");
+    for await (const line of readLines(fileReader)) {
       const arr = line.split(",");
       const word = arr[0];
       const yomis = arr.slice(1);
@@ -26,4 +26,4 @@ class YomiDict {
   }
 }
 
-module.exports = YomiDict;
+export { YomiDict };
