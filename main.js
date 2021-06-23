@@ -2,9 +2,12 @@ const fs = require("fs");
 const readline = require("readline");
 
 class YomiDict {
-  static async load() {
+  static async load(filepath) {
     const dict = {};
-    const fileReader = fs.createReadStream(__dirname + "/yomi.csv");
+    if (!filepath) {
+      filepath = __dirname + "/yomi.csv";
+    }
+    const fileReader = fs.createReadStream(filepath);
     const rl = readline.createInterface({ input: fileReader });
     for await (const line of rl) {
       const arr = line.split(",");

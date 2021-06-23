@@ -12,9 +12,10 @@ Kanji reading dictionary.
 ## Usage (Deno)
 
 ```
+// git clone https://github.com/marmooo/yomi-dict
 import { YomiDict } from "yomi-dict/mod.js";
 
-const dict = await YomiDict.load();
+const dict = await YomiDict.load("yomi-dict/yomi.csv");
 dict.get('学校');  // --> [がっこう]
 ```
 
