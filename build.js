@@ -76,8 +76,8 @@ function getWordFromUniDic(line) {
 }
 
 function getWordFromSudachiDict(line) {
-  var arr = line.split(",");
-  var pos2 = arr[6];
+  const arr = line.split(",");
+  const pos2 = arr[6];
   if (pos2 == "固有名詞") {
     return false;
   }
