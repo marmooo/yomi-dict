@@ -77,10 +77,11 @@ function getWordFromUniDic(line) {
 
 function getWordFromSudachiDict(line) {
   const arr = line.split(",");
+  const pos1 = arr[5];
   const pos2 = arr[6];
-  if (pos2 == "固有名詞") {
-    return false;
-  }
+  if (pos1 == "記号") return false;
+  if (pos1 == "補助記号") return false;
+  if (pos2 == "固有名詞") return false;
   const word = arr[0];
   const yomi = arr[11];
   return [word, yomi];
@@ -112,17 +113,15 @@ async function addDictData(dictName, path) {
     }
     if (data) {
       let [word, yomi] = data;
-      if (/[\u4E00-\u9FFF]/.test(word)) { // 漢字を含む語彙に限定
+      if (/[一-龠々]/.test(word)) { // 漢字を含む語彙に限定
         const yomis = d[word];
         yomi = kanaToHira(yomi);
-        if (yomi != "*" && yomi != "きごう") {
-          if (yomis) {
-            if (!yomis.includes(yomi)) {
-              d[word].push(yomi);
-            }
-          } else {
-            d[word] = [yomi];
+        if (yomis) {
+          if (!yomis.includes(yomi)) {
+            d[word].push(yomi);
           }
+        } else {
+          d[word] = [yomi];
         }
       }
     }
