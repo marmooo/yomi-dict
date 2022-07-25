@@ -77,8 +77,10 @@ function getWordFromUniDic(line) {
 
 function getWordFromSudachiDict(line) {
   const arr = line.split(",");
+  const leftId = arr[1];
   const pos1 = arr[5];
   const pos2 = arr[6];
+  if (leftId == "-1") return false;
   if (pos1 == "記号") return false;
   if (pos1 == "補助記号") return false;
   if (pos2 == "固有名詞") return false;
