@@ -5,9 +5,8 @@ Kanji reading dictionary.
 ## Build
 
 1. install [SudachiDict](https://github.com/WorksApplications/SudachiDict)
-2. install
-   [NAIST-jdic](https://ja.osdn.net/projects/naist-jdic/downloads/53500/mecab-naist-jdic-0.6.3b-20111013.tar.gz/)
-3. `deno run --allow-read --allow-write build.js`
+   licensed under the [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+2. `deno run --allow-read --allow-write build.js`
 
 ## Usage (Deno)
 
@@ -35,8 +34,3 @@ main();
 ## License
 
 Apache-2.0
-
-## Attribution
-
-- [SudachiDict](https://github.com/WorksApplications/SudachiDict) is licensed
-  under the [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0).

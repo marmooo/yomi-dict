@@ -11,9 +11,9 @@ const dicts = {
   //   'ipadic-2.7.0/Noun.verbal.utf8.dic',
   //   'ipadic-2.7.0/Verb.utf8.dic',
   // ],
-  NaistJdic: [ // require iconv
-    "mecab-naist-jdic-0.6.3b-20111013/naist-jdic.utf8.csv",
-  ],
+  // NaistJdic: [ // require iconv
+  //   "mecab-naist-jdic-0.6.3b-20111013/naist-jdic.utf8.csv",
+  // ],
   // UniDic: ['unidic-csj-3.0.1.1/lex.csv'],
   SudachiDict: [
     "SudachiDict/src/main/text/small_lex.csv",
