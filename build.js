@@ -24,7 +24,7 @@ function getWordFromSudachiDict(line) {
   if (pos1 == "記号") return false;
   if (pos1 == "補助記号") return false;
   if (pos2 == "固有名詞") return false;
-  if (!/[一-龠々]/.test(word)) return false;
+  if (!/[\u4E00-\u9FFF々]/.test(word)) return false;
   if (/\w/.test(word)) return false;
   return [word, yomi];
 }
