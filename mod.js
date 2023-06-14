@@ -6,8 +6,7 @@ class YomiDict {
       .then((response) => response.text())
       .then((text) => {
         const d = {};
-        text.split("\n").forEach((line) => {
-          if (!line) return;
+        text.trimEnd().split("\n").forEach((line) => {
           const arr = line.split(",");
           const word = arr[0];
           const yomis = arr.slice(1);
@@ -34,6 +33,7 @@ class YomiDict {
       const yomis = arr.slice(1);
       dict[word] = yomis;
     }
+    fileReader.close();
     const yomiDict = new YomiDict();
     yomiDict.dict = dict;
     return yomiDict;
