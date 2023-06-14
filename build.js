@@ -13,27 +13,28 @@ function kanaToHira(str) {
   });
 }
 
-function getWordFromSudachiDict(line) {
+function getWordYomi(line) {
   const arr = line.split(",");
+  const surface = arr[0];
   const leftId = arr[1];
   const pos1 = arr[5];
   const pos2 = arr[6];
-  const word = arr[0];
   const yomi = arr[11];
-  if (leftId == "-1") return false;
-  if (pos1 == "記号") return false;
-  if (pos1 == "補助記号") return false;
-  if (pos2 == "固有名詞") return false;
-  if (!/[\u4E00-\u9FFF々]/.test(word)) return false;
-  if (/\w/.test(word)) return false;
-  return [word, yomi];
+  if (leftId == "-1") return;
+  if (pos1 == "記号") return;
+  if (pos1 == "補助記号") return;
+  if (pos2 == "固有名詞") return;
+  if (!/[\u4E00-\u9FFF々]/.test(surface)) return;
+  if (!/^[ぁ-ゖァ-ヶー\u4E00-\u9FFF々]+$/.test(surface)) return;
+  if (pos1 != "名詞" && surface.includes("ー")) return; // noisy
+  return [surface, yomi];
 }
 
 async function addDictData(path) {
   const fileReader = await Deno.open(path);
   for await (const line of readLines(fileReader)) {
     if (!line) continue;
-    const data = getWordFromSudachiDict(line);
+    const data = getWordYomi(line);
     if (data) {
       let [word, yomi] = data;
       const yomis = db[word];
