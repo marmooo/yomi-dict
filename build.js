@@ -24,8 +24,8 @@ function getWordYomi(line) {
   if (pos1 == "記号") return;
   if (pos1 == "補助記号") return;
   if (pos2 == "固有名詞") return;
-  if (!/[\u4E00-\u9FFF々]/.test(surface)) return;
-  if (!/^[ぁ-ゖァ-ヶー\u4E00-\u9FFF々]+$/.test(surface)) return;
+  if (!/[\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}々]/u.test(surface)) return;
+  if (!/^[ぁ-ゖァ-ヶー\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}々]+$/u.test(surface)) return;
   if (pos1 != "名詞" && surface.includes("ー")) return; // noisy
   return [surface, yomi];
 }
