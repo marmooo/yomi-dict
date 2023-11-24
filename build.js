@@ -1,5 +1,8 @@
-import { readLines } from "https://deno.land/std/io/mod.ts";
+import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
 
+const kanji = "\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}";
+const kanjiRegexp = new RegExp(`[${kanji}々]`, "u");
+const idiomRegexp = new RegExp(`^[ぁ-ゖァ-ヶー${kanji}々]+$`, "u");
 const outPath = "yomi.csv";
 const dicts = [
   "SudachiDict/src/main/text/small_lex.csv",
@@ -7,7 +10,7 @@ const dicts = [
 ];
 
 function kanaToHira(str) {
-  return str.replace(/[ァ-ヶ]/g, function (match) {
+  return str.replace(/[ァ-ヶ]/g, (match) => {
     const chr = match.charCodeAt(0) - 0x60;
     return String.fromCharCode(chr);
   });
@@ -24,16 +27,19 @@ function getWordYomi(line) {
   if (pos1 == "記号") return;
   if (pos1 == "補助記号") return;
   if (pos2 == "固有名詞") return;
-  if (!/[\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}々]/u.test(surface)) return;
-  if (!/^[ぁ-ゖァ-ヶー\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}々]+$/u.test(surface)) return;
+  if (!kanjiRegexp.test(surface)) return;
+  if (!idiomRegexp.test(surface)) return;
   if (pos1 != "名詞" && surface.includes("ー")) return; // noisy
   return [surface, yomi];
 }
 
-async function addDictData(path) {
-  const fileReader = await Deno.open(path);
-  for await (const line of readLines(fileReader)) {
-    if (!line) continue;
+const db = {};
+for (const dict of dicts) {
+  const file = await Deno.open(dict);
+  const lineStream = file.readable
+    .pipeThrough(new TextDecoderStream())
+    .pipeThrough(new TextLineStream());
+  for await (const line of lineStream) {
     const data = getWordYomi(line);
     if (data) {
       let [word, yomi] = data;
@@ -50,15 +56,12 @@ async function addDictData(path) {
   }
 }
 
-const db = {};
-for (const dict of dicts) {
-  await addDictData(dict);
-}
-
 // どの辞書を使っても都道府県は読めるように
-const fileReader = await Deno.open("prefectures.lst");
-for await (const line of readLines(fileReader)) {
-  if (!line) continue;
+const file = await Deno.open("prefectures.lst");
+const lineStream = file.readable
+  .pipeThrough(new TextDecoderStream())
+  .pipeThrough(new TextLineStream());
+for await (const line of lineStream) {
   const [word, yomi] = line.split(",");
   if (db[word]) {
     db[word].push(yomi);
