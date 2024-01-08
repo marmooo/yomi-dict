@@ -1,6 +1,6 @@
 import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
 
-const kanji = "\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}";
+const kanji = "\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{37FFF}";
 const kanjiRegexp = new RegExp(`[${kanji}々]`, "u");
 const idiomRegexp = new RegExp(`^[ぁ-ゖァ-ヶー${kanji}々]+$`, "u");
 const outPath = "yomi.csv";
