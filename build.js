@@ -64,7 +64,9 @@ const lineStream = file.readable
 for await (const line of lineStream) {
   const [word, yomi] = line.split(",");
   if (db[word]) {
-    db[word].push(yomi);
+    if (!db[word].includes(yomi)) {
+      db[word].push(yomi);
+    }
   } else {
     db[word] = [yomi];
   }
