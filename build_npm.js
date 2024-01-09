@@ -10,7 +10,7 @@ await build({
   },
   package: {
     name: "yomi-dict",
-    version: "0.1.5",
+    version: "0.1.6",
     description: "Kanji reading dictionary.",
     license: "Apache-2.0",
     "main": "mod.js",
