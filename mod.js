@@ -1,4 +1,4 @@
-import { readLines } from "https://deno.land/std/io/mod.ts";
+import { readLines } from "https://deno.land/std@0.211.0/io/mod.ts";
 
 export class YomiDict {
   static async fetch(url, options) {
