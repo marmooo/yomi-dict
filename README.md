@@ -14,7 +14,7 @@ Kanji reading dictionary.
 import { YomiDict } from "yomi-dict/mod.js";
 
 const dict = await YomiDict.load("yomi.csv");
-dict.get('学校');  // --> [がっこう]
+dict.get("学校");  // --> ["がっこう"]
 ```
 
 ## License
