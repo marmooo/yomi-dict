@@ -1,4 +1,4 @@
-import { readLines } from "https://deno.land/std@0.211.0/io/mod.ts";
+import { TextLineStream } from "jsr:@std/streams/text-line-stream";
 
 export class YomiDict {
   static async fetch(url, options) {
@@ -19,13 +19,15 @@ export class YomiDict {
   static async load(filepath, options) {
     const dict = {};
     const file = await Deno.open(filepath, options);
-    for await (const line of readLines(file)) {
+    const lineStream = file.readable
+      .pipeThrough(new TextDecoderStream())
+      .pipeThrough(new TextLineStream());
+    for await (const line of lineStream) {
       const arr = line.split(",");
       const word = arr[0];
       const yomis = arr.slice(1);
       dict[word] = yomis;
     }
-    file.close();
     const yomiDict = new YomiDict();
     yomiDict.dict = dict;
     return yomiDict;

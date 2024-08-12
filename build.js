@@ -1,4 +1,4 @@
-import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
+import { TextLineStream } from "jsr:@std/streams/text-line-stream";
 
 const kanji = "\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{37FFF}";
 const kanjiRegexp = new RegExp(`[${kanji}々]`, "u");

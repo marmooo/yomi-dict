@@ -7,6 +7,10 @@ await build({
   outDir: "./npm",
   shims: {
     deno: true,
+    custom: [{
+      package: { name: "stream/web" },
+      globalNames: ["TransformStream"],
+    }],
   },
   package: {
     name: "yomi-dict",
