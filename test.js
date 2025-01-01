@@ -1,5 +1,5 @@
 import { YomiDict } from "./mod.js";
-import { assertEquals } from "https://deno.land/std/assert/mod.ts";
+import { assertEquals } from "jsr:@std/assert/equals";
 
 Deno.test("Simple check", async () => {
   const dict = await YomiDict.load("yomi.csv");
