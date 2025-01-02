@@ -5,6 +5,8 @@ await emptyDir("./npm");
 await build({
   entryPoints: ["./mod.js"],
   outDir: "./npm",
+  importMap: "deno.json",
+  typeCheck: false,
   compilerOptions: {
     lib: ["ESNext"],
   },
